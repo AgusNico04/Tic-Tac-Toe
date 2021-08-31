@@ -1,25 +1,28 @@
 import Draw from "./Draw.js";
+import AI from "./AI.js";
 import EventHandler from "./EventHandler.js";
 import Player from "./Player.js";
 
 export default class Board {
-    constructor(canvas, rows = 3, columns = 3, width = 420, height = 420, color = "#000000", player1_color = "red", player2_color = "blue", initialShape = "cross") {
+    constructor(canvas, width = 420, height = 420, color = "#000000", gamemode = "Human", player1_color = "red", player2_color = "blue", initialShape = "cross") {
         this.canvas = canvas;
         this.canvas.setAttribute("width", width);
         this.canvas.setAttribute("height", height);
         this.width = width;
         this.height = height;
         this.color = color;
-        this.rows = rows;
-        this.columns = columns;
+        this.rows = 3;
+        this.columns = 3;
         this.board = [
             ["", "", ""],
             ["", "", ""],
             ["", "", ""]
         ];
         this.drawCanvas = new Draw(this.canvas);
+        this.gamemode = gamemode;
         this.player = new Player(this.canvas, this, player1_color, player2_color, initialShape);
-        this.eventHandler = new EventHandler(this.canvas, this, this.player);
+        this.AI = new AI(this, this.player);
+        this.eventHandler = new EventHandler(this.canvas, this, this.player, this.gamemode, this.AI);
     }
 
     drawBoard() {
@@ -32,7 +35,12 @@ export default class Board {
     }
 
     initGame() {
-        this.eventHandler.handleEvent("click");
+        if (this.gamemode === "AI_first") {
+            this.AI.dummyMove();
+            this.player.currentPlayer = 1;
+        }
+
+        this.eventHandler.handleEvent();
     }
 
     toIndex(x, y) {
@@ -48,14 +56,8 @@ export default class Board {
     }
 
     drawPlayer(arr) {
-        if (this.board[arr[0]][arr[1]] === "") {
-            this.board[arr[0]][arr[1]] = arr[2];
-            let winner = this.player.checkWinner();
-            this.player.drawShape(...(this.toCoordinates(arr[0], arr[1])), Math.floor(((this.width / this.columns) / 2) + Math.floor(((this.width / this.columns) / 2) / 2)), Math.floor(((this.height / this.rows) / 2) + Math.floor(((this.height / this.rows) / 2) / 2)));
-            if (winner[0]) {
-                this.finalizeGame();
-            }
-        }
+        this.board[arr[0]][arr[1]] = arr[2];
+        this.player.drawShape(...(this.toCoordinates(arr[0], arr[1])), Math.floor(((this.width / this.columns) / 2) + Math.floor(((this.width / this.columns) / 2) / 2)), Math.floor(((this.height / this.rows) / 2) + Math.floor(((this.height / this.rows) / 2) / 2)));       
     }
 
     finalizeGame() {

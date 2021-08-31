@@ -14,12 +14,10 @@ export default class Player {
         if (this.currentShape === "cross") {
             this.drawCanvas.drawCross(x, y, width, height, this.color.get(this.currentPlayer));
             this.currentShape = "circle";
-            this.currentPlayer = this.currentPlayer === 0 ? 1 : 0;
         }
         else {
             this.drawCanvas.drawCircle(x, y, (Math.PI / 180) * 360, (((width + height) / 2) / 2), this.color.get(this.currentPlayer));
             this.currentShape = "cross";
-            this.currentPlayer = this.currentPlayer === 0 ? 1 : 0;
         }
     }
 
@@ -45,6 +43,13 @@ export default class Player {
         }
 
         return [false];
+    }
+
+    checkTie() {
+        if (!this.checkWinner()[0] && (!this.board.getBoard[0].includes("")) && (!this.board.getBoard[1].includes("")) && (!this.board.getBoard[2].includes(""))) {
+            console.log("Tie!");
+            return true;
+        }
     }
 
     get getCurrentPlayer() {

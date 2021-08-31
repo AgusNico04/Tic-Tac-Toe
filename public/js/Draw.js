@@ -9,6 +9,7 @@ export default class Draw {
     drawRow(x, y, width, color) {
         this.ctx.beginPath();
         this.ctx.strokeStyle = color;
+        this.ctx.lineWidth = 3.3;
         this.ctx.moveTo(x, y);
         this.ctx.lineTo(width, y);
         this.ctx.stroke();
@@ -18,6 +19,7 @@ export default class Draw {
     drawColumn(x, y, height, color) {
         this.ctx.beginPath();
         this.ctx.strokeStyle = color;
+        this.ctx.lineWidth = 3.3;
         this.ctx.moveTo(x, y);
         this.ctx.lineTo(x, height);
         this.ctx.stroke();
@@ -27,6 +29,7 @@ export default class Draw {
     drawDiagonal(fromX, fromY, toX, toY, color) {
         this.ctx.beginPath();
         this.ctx.strokeStyle = color;
+        this.ctx.lineWidth = 3.3;
         this.ctx.moveTo(fromX, fromY);
         this.ctx.lineTo(toX, toY);
         this.ctx.stroke();
@@ -36,7 +39,7 @@ export default class Draw {
     drawCircle(x, y, radius, size, color) {
         this.ctx.beginPath();
         this.ctx.arc(x, y, size, 0, radius);
-        this.ctx.lineWidth = 2;
+        this.ctx.lineWidth = 3.3;
         this.ctx.strokeStyle = color;
         this.ctx.stroke();
         this.ctx.closePath();
@@ -45,7 +48,7 @@ export default class Draw {
     drawCross(x, y, width, height, color) {
         this.ctx.beginPath();
         this.ctx.strokeStyle = color;
-        this.ctx.lineWidth = 2;
+        this.ctx.lineWidth = 3.3;
         this.ctx.moveTo(x - width / 2, y - height / 2);
         this.ctx.lineTo(x - width / 2 + width, y - height / 2 + height);
         this.ctx.stroke();
@@ -53,7 +56,7 @@ export default class Draw {
 
         this.ctx.beginPath();
         this.ctx.strokeStyle = color;
-        this.ctx.lineWidth = 2;
+        this.ctx.lineWidth = 3.3;
         this.ctx.moveTo(x - width / 2 + width, y - height / 2);
         this.ctx.lineTo(x - width / 2, y - height / 2 + height);
         this.ctx.stroke();
