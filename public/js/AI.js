@@ -9,14 +9,14 @@ export default class AI {
         this.player = player;
     }
     
-    calculateMove(node) {
+    calculateMove(node, depth) {
         let maxValue = -Infinity;
         let move;
         for (let indexY = 0; indexY < 3; indexY++) {
             for (let indexX = 0; indexX < 3; indexX++) {
                 if (node[indexY][indexX] === "") {
                     node[indexY].splice(indexX, 1, 0);
-                    let evaluation = this.minimax(node, false);
+                    let evaluation = this.minimax(node, false, depth - 1);
                     node[indexY].splice(indexX, 1, "");
                     if (evaluation > maxValue) {
                         maxValue = evaluation;
@@ -29,7 +29,7 @@ export default class AI {
         this.board.drawPlayer(move);
     }
 
-    minimax(node, maximizingPlayer) {
+    minimax(node, maximizingPlayer, depth) {
         let checker = this.checkWinner(node);
 
         if (checker) {
@@ -51,7 +51,7 @@ export default class AI {
                 for (let indexX = 0; indexX < 3; indexX++) {
                     if (node[indexY][indexX] === "") {
                         node[indexY].splice(indexX, 1, 0);
-                        let evaluation = this.minimax(node, false);
+                        let evaluation = this.minimax(node, false, depth - 1);
                         node[indexY].splice(indexX, 1, "");
                         maxValue = Math.max(evaluation, maxValue);
                     }
@@ -66,7 +66,7 @@ export default class AI {
                 for (let indexX = 0; indexX < 3; indexX++) {
                     if (node[indexY][indexX] === "") {
                         node[indexY].splice(indexX, 1, 1);
-                        let evaluation = this.minimax(node, true);
+                        let evaluation = this.minimax(node, true, depth - 1);
                         node[indexY].splice(indexX, 1, "");
                         minValue = Math.min(evaluation, minValue);
                     }
