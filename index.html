@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/main.js" type="module"></script>
+    <title>Ta-Te-Ti</title>
+</head>
+<body>
+    <main>
+        <canvas id="canvas">
+            El navegador no soporta Canvas y es necesario para que el juego funcione.
+        </canvas>
+        <div id="section_1">
+            <p id="size">Tamaño del tablero: 420x420 (Predeterminado)</p>
+            <button id="start">Comenzar Juego</button>
+        </div>
+        <div id="section_2">
+            <p>Elige el tamaño</p>
+            <select id="select-size">
+                <option value="420">420x420</option>
+                <option value="600">600x600</option>
+                <option value="900">900x900</option>
+            </select>
+        </div>
+        <div id="section_3" align="right">
+            <p>Elige el color del tablero</p>
+            <select id="board-color">
+                <option value="black">Negro</option>
+                <option value="red">Rojo</option>
+                <option value="orange">Naranja</option>
+                <option value="blue">Azul</option>
+                <option value="cyan">Celeste</option>
+                <option value="purple">Violeta</option>
+                <option value="yellow">Amarillo</option>
+                <option value="green">Verde</option>
+                <option value="white">Blanco</option>
+            </select>
+            <p>Elige el color del jugador 1</p>
+            <select id="player1-color">
+                <option value="red">Rojo</option>
+                <option value="orange">Naranja</option>
+                <option value="blue">Azul</option>
+                <option value="cyan">Celeste</option>
+                <option value="purple">Violeta</option>
+                <option value="yellow">Amarillo</option>
+                <option value="green">Verde</option>
+                <option value="black">Negro</option>
+                <option value="white">Blanco</option>
+            </select>
+            <p>Elige el color del jugador 2</p>
+            <select id="player2-color">
+                <option value="blue">Azul</option>
+                <option value="red">Rojo</option>
+                <option value="orange">Naranja</option>
+                <option value="cyan">Celeste</option>
+                <option value="purple">Violeta</option>
+                <option value="yellow">Amarillo</option>
+                <option value="green">Verde</option>
+                <option value="black">Negro</option>
+                <option value="white">Blanco</option>
+            </select>
+            <p>Elige la figura inicial</p>
+            <select id="initial-shape">
+                <option value="cross">X</option>
+                <option value="circle">O</option>
+            </select>
+        </div>
+        <div id="section_4">
+            <p>Elige el modo de juego</p>
+            <select id="gamemode">
+                <option value="Human">Humano Vs Humano</option>
+                <option value="AI_first">IA Vs Humano</option>
+                <option value="AI_second">Humano Vs IA</option>
+            </select>
+        </div>
+    </main>
+</body>
+</html>
